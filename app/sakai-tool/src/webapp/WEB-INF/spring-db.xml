@@ -25,6 +25,7 @@
           <value>org/sakaiproject/tool/gradebook/Category.hbm.xml</value>
           <value>org/sakaiproject/tool/gradebook/LetterGradePercenteMapping.hbm.xml</value>
           <value>org/sakaiproject/tool/gradebook/Permission.hbm.xml</value>
+          <value>org/sakaiproject/tool/gradebook/iRubric/GradableObjectRubric.hbm.xml</value>
         </list>
 		</property>
 	</bean>

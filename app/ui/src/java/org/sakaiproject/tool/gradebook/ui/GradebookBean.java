@@ -38,6 +38,7 @@ import org.sakaiproject.tool.gradebook.Gradebook;
 import org.sakaiproject.tool.gradebook.business.GradebookManager;
 import org.sakaiproject.tool.gradebook.facades.*;
 
+import com.reazon.tool.irubric.IRubricManager;
 /**
  * Provide a UI handle to the selected gradebook.
  *
@@ -64,6 +65,9 @@ public class GradebookBean extends InitializableBean {
     private EventTrackingService eventTrackingService;
     private ConfigurationBean configurationBean;
     private GradebookPermissionService gradebookPermissionService;
+
+    //DN 2013-02-22: init irubricManager
+    private IRubricManager rubricManager;
 
     /**
      * @return Returns the gradebookId.
@@ -141,6 +145,20 @@ public class GradebookBean extends InitializableBean {
      */
     public void setGradebookManager(GradebookManager gradebookManager) {
         this.gradebookManager = gradebookManager;
+    }
+
+    /**
+     * @return Returns the irubricManager.
+     */
+    public IRubricManager getRubricManager() {
+        return rubricManager;
+    }
+
+    /**
+     * @param irubricManager The IRubricManager to set.
+     */
+    public void setRubricManager(IRubricManager rubricManager) {
+        this.rubricManager = rubricManager;
     }
 
     public SectionAwareness getSectionAwareness() {

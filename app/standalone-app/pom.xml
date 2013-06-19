@@ -13,6 +13,13 @@
   <name>sakai-gradebook-standalone-app</name>
   <dependencies>
     <dependency>
+      <groupId>${project.groupId}</groupId>
+        <artifactId>sakai-gradebook-irubric</artifactId>
+        <version>${project.version}</version>
+        
+    </dependency>
+
+    <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
     </dependency>

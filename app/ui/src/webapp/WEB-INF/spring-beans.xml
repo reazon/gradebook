@@ -25,6 +25,18 @@
 		</property>
 	</bean>
 
+	<!-- IRubric Manager -->
+	<bean id="com_reazon_tool_irubric_IRubricManager" parent="gradebookTxTemplate">
+		<property name="target">
+			<bean class="com.reazon.tool.irubric.impl.IRubricManagerHibernateImpl">
+				<property name="sessionFactory"><ref bean="gradebookSessionFactory"/></property>
+				<property name="sectionAwareness">
+					<ref bean="org.sakaiproject.section.api.SectionAwareness" />
+				</property>
+            </bean>
+		</property>
+	</bean>
+
 	<!--
 		UI authorization filtering. Handled here instead of in Faces configuration files
 		because Faces won't necessarily be loaded on the first authorization check.

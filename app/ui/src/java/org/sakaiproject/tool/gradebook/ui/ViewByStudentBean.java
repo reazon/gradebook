@@ -40,6 +40,7 @@ import org.sakaiproject.tool.gradebook.Comment;
 import org.sakaiproject.tool.gradebook.CourseGrade;
 import org.sakaiproject.tool.gradebook.CourseGradeRecord;
 import org.sakaiproject.tool.gradebook.GradableObject;
+import org.sakaiproject.tool.gradebook.iRubric.GradableObjectRubric;
 import org.sakaiproject.tool.gradebook.Gradebook;
 import org.sakaiproject.tool.gradebook.GradingEvent;
 import org.sakaiproject.tool.gradebook.GradingEvents;
@@ -68,6 +69,7 @@ public class ViewByStudentBean extends EnrollmentTableBean implements Serializab
     private String sortColumn;
     
     private boolean isInstructorView = false;
+    private boolean haveOneAttached;
 
     private StringBuilder rowStyles;
     private Map commentMap;
@@ -75,6 +77,7 @@ public class ViewByStudentBean extends EnrollmentTableBean implements Serializab
     private List gradebookItems;
     private String studentUid;
     private Gradebook gradebook;
+    //private int iRubricSwitch = 0;
 
     private static final Map columnSortMap;
     private static final String SORT_BY_NAME = "name";
@@ -184,6 +187,7 @@ public class ViewByStudentBean extends EnrollmentTableBean implements Serializab
      * sort preferences, we need to define the defaults locally.
      */
     public ViewByStudentBean() {
+    	//iRubricSwitch = Integer.parseInt(getGradebookBean().getConfigurationBean().getConfig("irubric.switch", "0"));
         // SAK-15311 - setup so students view can use sorting if configured
         boolean useSort = getGradebookBean().getConfigurationBean().getBooleanConfig("gradebook.students.use.sorting", false);
         if (useSort) {
@@ -639,7 +643,9 @@ public class ViewByStudentBean extends EnrollmentTableBean implements Serializab
     				}
     			}
     		}
-
+    		
+    		List<Long> associatedAssignmentIds = new ArrayList();
+    		
     		for(Iterator iter = gradebookItems.iterator(); iter.hasNext();) {
     			Object gradebookItem = iter.next();
     			if (gradebookItem instanceof AssignmentGradeRow) {
@@ -648,16 +654,46 @@ public class ViewByStudentBean extends EnrollmentTableBean implements Serializab
     					rowStyles.append("external");
     					anyExternallyMaintained = true;
     				} else {
-    					rowStyles.append("internal");
+    					rowStyles.append("internal");    					
     				}
+    				associatedAssignmentIds.add(gr.getAssociatedAssignment().getId());
     			} 
 
     			if(iter.hasNext()) {
     				rowStyles.append(",");
     			}
     		}
+    		
+    		if(getRubricManager().isShowiRubricLink()) {
+                List gradableObjectRubrics = getRubricManager().getGradableObjectRubrics(associatedAssignmentIds);
+                
+                for(Iterator iter = gradebookItems.iterator(); iter.hasNext();) {
+                    Object gradebookItem = iter.next();
+                    if (gradebookItem instanceof AssignmentGradeRow) {
+                        AssignmentGradeRow gr = (AssignmentGradeRow)gradebookItem;
+                        for(Object gradableObjectRubric : gradableObjectRubrics) {
+                            Long id = ((GradableObjectRubric)gradableObjectRubric).getGradableObjectId();
+                            if(gr.getAssociatedAssignment().getId().equals(id)) {
+                                gr.setRubric(true);
+                                if (!haveOneAttached) {
+                                    setHaveOneAttached(true);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    		
     	}
     }
+    
+    public boolean isHaveOneAttached() {
+		return haveOneAttached;
+	}
+ 
+	public void setHaveOneAttached(boolean haveOneAttached) {
+		this.haveOneAttached = haveOneAttached;
+	}
 }
 
 

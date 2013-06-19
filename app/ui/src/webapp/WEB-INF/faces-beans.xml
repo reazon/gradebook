@@ -11,6 +11,13 @@
 			<property-name>gradebookManager</property-name>
 			<value>#{org_sakaiproject_tool_gradebook_business_GradebookManager}</value>
 		</managed-property>
+		
+		<managed-property>
+			<description>Rubric Manager</description>
+			<property-name>rubricManager</property-name>
+			<value>#{com_reazon_tool_irubric_IRubricManager}</value>
+		</managed-property>
+
 		<managed-property>
 			<description>Section Awareness Service</description>
 			<property-name>sectionAwareness</property-name>

@@ -43,6 +43,7 @@ import org.sakaiproject.service.gradebook.shared.StaleObjectModificationExceptio
 import org.sakaiproject.tool.cover.SessionManager;
 import org.sakaiproject.tool.gradebook.Assignment;
 import org.sakaiproject.tool.gradebook.Category;
+import org.sakaiproject.tool.gradebook.iRubric.GradableObjectRubric;
 import org.sakaiproject.tool.gradebook.Gradebook;
 import org.sakaiproject.tool.gradebook.jsf.FacesUtil;
 import org.sakaiproject.util.ResourceLoader;
@@ -56,6 +57,7 @@ public class AssignmentBean extends GradebookDependentBean implements Serializab
     private Assignment assignment;
     private List categoriesSelectList;
     private String assignmentCategory;
+    private GradableObjectRubric gradableObjectRubric;
 
     // added to support bulk gradebook item creation
     public List newBulkItems; 
@@ -82,7 +84,8 @@ public class AssignmentBean extends GradebookDependentBean implements Serializab
 				assignment.setReleased(true);
 			}
 		}
-
+		
+		gradableObjectRubric = null;
 		Category assignCategory = assignment.getCategory();
 		if (assignCategory != null) {
 			assignmentCategory = assignCategory.getId().toString();
@@ -503,5 +506,24 @@ public class AssignmentBean extends GradebookDependentBean implements Serializab
 		
 		return rowClasses.toString();
 	}
+	
+	/**
+     * Get a GradableObjectRubric object by current assignment
+	 *
+	 * @param none
+	 * @return GradableObjectRubric
+     */
+	public GradableObjectRubric getGradableObjectRubric() {
+        if (logger.isDebugEnabled()) {
+			logger.debug("Assignment: " +  assignmentId);
+		}
+		if (gradableObjectRubric == null) {
+			if (assignmentId != null) {
+				gradableObjectRubric = getRubricManager().getGradableObjectRubric(assignmentId);
+			}
+		}
+
+        return gradableObjectRubric;
+    }
 }
 

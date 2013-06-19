@@ -1,6 +1,7 @@
 <link href="dhtmlpopup/dhtmlPopup.css" rel="stylesheet" type="text/css" />
 <script src="dhtmlpopup/dhtmlPopup.js" type="text/javascript"></script>
 <script src="js/dynamicSizeCheck.js" type="text/javascript"></script>
+<script src="js/irubric/helper.js" type="text/javascript"></script>
 
 <f:view>
 	<div class="portletBody">
@@ -206,6 +207,9 @@
 				</h:outputLink>
 				</h:column>
 				
+				<%-- add links for grading a rubric or get rubric scores from iRubric system --%>
+				<%@include file="/inc/irubric/instructorView.jspf"%>
+				
 				<h:column>
 					<f:facet name="header">
 						<t:commandSortHeader columnName="pointsEarned" propertyName="pointsEarned" immediate="true" arrow="true">
@@ -221,6 +225,7 @@
 							<h:panelGroup rendered="#{!row.associatedAssignment.externallyMaintained && row.userCanGrade}">
 								<h:inputText id="Score" value="#{row.score}" size="4" 
 									 rendered="#{instructorViewBean.gradeEntryByPoints || instructorViewBean.gradeEntryByPercent}"
+									 alt="#{row.associatedAssignment.id}"
 									 style="text-align:right;" onkeypress="return submitOnEnter(event, 'gbForm:saveButton');">
 									<f:converter converterId="org.sakaiproject.gradebook.jsf.converter.NONTRAILING_DOUBLE" />
 									<f:validateDoubleRange minimum="0"/>
@@ -232,6 +237,7 @@
 								
 								<h:inputText id="LetterScore" value="#{row.letterScore}" size="4" 
 									 rendered="#{instructorViewBean.gradeEntryByLetter}"
+									 alt="#{row.associatedAssignment.id}"
 									 style="text-align:right;" onkeypress="return submitOnEnter(event, 'gbForm:saveButton');">
 									<f:converter converterId="org.sakaiproject.gradebook.jsf.converter.LETTER_GRADE_CONVERTER" />
 								</h:inputText>

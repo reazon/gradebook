@@ -19,7 +19,10 @@
   </scm>
   <modules>
     <module>help</module>
+    <module>gradebook-irubric</module>
     <module>testservice-tool</module>
+     <module>gradebook-irubric-api</module>
+    <module>gradebook-irubric-impl/impl</module>
     <module>app</module>
     <module>sample-course-grade-converter</module>
   </modules>
