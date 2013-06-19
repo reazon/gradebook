@@ -46,6 +46,7 @@ import org.sakaiproject.service.gradebook.shared.StaleObjectModificationExceptio
 import org.sakaiproject.tool.cover.SessionManager;
 import org.sakaiproject.tool.gradebook.Assignment;
 import org.sakaiproject.tool.gradebook.Category;
+import org.sakaiproject.tool.gradebook.iRubric.GradableObjectRubric;
 import org.sakaiproject.tool.gradebook.Gradebook;
 import org.sakaiproject.tool.gradebook.jsf.FacesUtil;
 import org.sakaiproject.util.ResourceLoader;
@@ -59,6 +60,8 @@ public class AssignmentBean extends GradebookDependentBean implements Serializab
     private Assignment assignment;
     private List categoriesSelectList;
     private String assignmentCategory;
+    private GradableObjectRubric gradableObjectRubric;
+    
     // these 2 used to determine whether to zero-out the point value in applyPointsPossibleForDropScoreCategories
     private boolean categoryChanged;
     public boolean gradeEntryTypeChanged;
@@ -83,7 +86,7 @@ public class AssignmentBean extends GradebookDependentBean implements Serializab
      * To add the proper number of blank gradebook item objects for bulk creation 
      */
     private static final int NUM_EXTRA_ASSIGNMENT_ENTRIES = 50;
-    
+
 	protected void init() {
 		if (logger.isDebugEnabled()) logger.debug("init assignment=" + assignment);
 
@@ -722,6 +725,25 @@ public class AssignmentBean extends GradebookDependentBean implements Serializab
 	public void setSelectedAssignmentIsOnlyOne(boolean selectedAssignmentIsOnlyOne) {
 		this.selectedAssignmentIsOnlyOne = selectedAssignmentIsOnlyOne;
 	}
+	
+	/**
+     * Get a GradableObjectRubric object by current assignment
+	 *
+	 * @param none
+	 * @return GradableObjectRubric
+     */
+	public GradableObjectRubric getGradableObjectRubric() {
+        if (logger.isDebugEnabled()) {
+			logger.debug("Assignment: " +  assignmentId);
+        }
+		if (gradableObjectRubric == null && assignmentId != null) {
+			
+			gradableObjectRubric = getRubricManager().getGradableObjectRubric(assignmentId);
+			
+		}
+
+        return gradableObjectRubric;
+    }
 
 }
 

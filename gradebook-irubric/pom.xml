@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>gradebook-base</artifactId>
+    <groupId>org.sakaiproject</groupId>
+    <version>2.9.0-rc03</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  <artifactId>sakai-gradebook-irubric</artifactId>
+  <name>sakai-gradebook-irubric</name>
+  <packaging>jar</packaging>
+
+  <properties>
+    <deploy.target>shared</deploy.target>
+  </properties>
+
+    <dependencies>
+   
+    </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>${basedir}/src/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+</project>

@@ -37,6 +37,7 @@ import javax.faces.context.FacesContext;
 
 
 import org.apache.commons.lang.StringUtils;
+import org.sakaiproject.exception.IdUnusedException;
 import org.sakaiproject.jsf.util.LocaleUtil;
 import org.sakaiproject.section.api.SectionAwareness;
 import org.sakaiproject.section.api.coursemanagement.CourseSection;
@@ -44,8 +45,12 @@ import org.sakaiproject.section.api.facade.Role;
 import org.sakaiproject.service.gradebook.shared.GradebookService;
 import org.sakaiproject.service.gradebook.shared.GradebookExternalAssessmentService;
 import org.sakaiproject.service.gradebook.shared.GradebookPermissionService;
+import org.sakaiproject.site.api.Site;
+import org.sakaiproject.site.cover.SiteService;
+import org.sakaiproject.tool.api.Placement;
 import org.sakaiproject.tool.api.ToolSession;
 import org.sakaiproject.tool.cover.SessionManager;
+import org.sakaiproject.tool.cover.ToolManager;
 import org.sakaiproject.tool.gradebook.Category;
 import org.sakaiproject.tool.gradebook.GradeMapping;
 import org.sakaiproject.tool.gradebook.Gradebook;
@@ -55,6 +60,7 @@ import org.sakaiproject.tool.gradebook.facades.UserDirectoryService;
 import org.sakaiproject.tool.gradebook.jsf.FacesUtil;
 import org.sakaiproject.util.ResourceLoader;
 
+import com.reazon.tool.irubric.IRubricManager;
 
 public abstract class GradebookDependentBean extends InitializableBean {
 	private String pageName;
@@ -67,6 +73,8 @@ public abstract class GradebookDependentBean extends InitializableBean {
     private boolean isExistingConflictScale = false;
     
     protected final String BREADCRUMBPAGE = "breadcrumbPage";
+    
+    public static final String IRUBRIC_SITE_KEY = "iRubricSite";
 
 	/**
 	 * Marked transient to allow serializable subclasses.
@@ -152,6 +160,11 @@ public abstract class GradebookDependentBean extends InitializableBean {
 
 	public GradebookManager getGradebookManager() {
 		return getGradebookBean().getGradebookManager();
+	}
+
+	//DN 2012-02-22: get irubricManager
+	public IRubricManager getRubricManager(){
+		return getGradebookBean().getRubricManager();
 	}
 
 	public SectionAwareness getSectionAwareness() {
@@ -747,5 +760,31 @@ public abstract class GradebookDependentBean extends InitializableBean {
 	public void setIsExistingConflictScale(boolean isExistingConflictScale)
 	{
 		this.isExistingConflictScale = isExistingConflictScale;
+	}
+	
+	private transient Boolean isIRubricSite;
+	public boolean getIsiRubricSite() {
+	    if (isIRubricSite == null) {
+	        String currentSiteId = null;
+	        Placement placement = ToolManager.getCurrentPlacement();
+	        if (placement != null) {
+	            currentSiteId = placement.getContext();
+	        }
+	        String iRubricSiteValue = null;
+	        try {
+	            Site site = SiteService.getSite(currentSiteId);
+	            iRubricSiteValue = site.getProperties().getProperty(IRUBRIC_SITE_KEY);
+	        } catch(IdUnusedException e) {
+	            iRubricSiteValue = null;
+	        }
+	        
+	        if (iRubricSiteValue != null && "true".equalsIgnoreCase(iRubricSiteValue)) {
+	            isIRubricSite = true;
+	        } else {
+	            isIRubricSite = false;
+	        }
+	    }
+
+	    return isIRubricSite;
 	}
 }

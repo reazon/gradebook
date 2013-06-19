@@ -47,6 +47,8 @@ import org.sakaiproject.tool.gradebook.jsf.FacesUtil;
  */
 public class InstructorViewBean extends ViewByStudentBean implements Serializable {
 	private static Log logger = LogFactory.getLog(InstructorViewBean.class);
+	
+	public static final String IRUBRIC_SITE_KEY = "iRubricSite";
 
 	private EnrollmentRecord previousStudent;
 	private EnrollmentRecord nextStudent;

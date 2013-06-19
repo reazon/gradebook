@@ -2,6 +2,7 @@
 <link href="dhtmlpopup/dhtmlCommentPopup.css" rel="stylesheet" type="text/css" />
 <script src="dhtmlpopup/dhtmlPopup.js" type="text/javascript"></script>
 <script src="js/frameAdjust.js" type="text/javascript"></script>
+<script src="js/irubric/helper.js" type="text/javascript"></script>
 
 <f:view>
 	<div class="portletBody">
@@ -114,6 +115,9 @@
 					</h:outputText>
 					<h:outputText value="#{msgs.score_null_placeholder}" rendered="#{row.assignment && row.associatedAssignment.dueDate == null}"/>
 				</h:column>
+				
+				<%-- add link to view a rubric on iRubric system (student view mode) --%>
+				<%@include file="/inc/irubric/studentView.jspf"%>
 				
 				<h:column>
 					<f:facet name="header">

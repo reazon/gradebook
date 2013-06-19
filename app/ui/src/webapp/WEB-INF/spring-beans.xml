@@ -34,6 +34,18 @@
 		</property>
 	</bean>
 
+	<!-- IRubric Manager -->
+	<bean id="com_reazon_tool_irubric_IRubricManager" parent="gradebookTxTemplate">
+		<property name="target">
+			<bean class="com.reazon.tool.irubric.impl.IRubricManagerHibernateImpl">
+				<property name="sessionFactory"><ref bean="gradebookSessionFactory"/></property>
+				<property name="sectionAwareness">
+					<ref bean="org.sakaiproject.section.api.SectionAwareness" />
+				</property>
+            </bean>
+		</property>
+	</bean>
+	
 	<!--
 		 This bean is added because of cross-service transaction issues. There may
 		 be a cleaner fix, but various exceptions were being thrown about multiple

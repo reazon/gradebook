@@ -46,12 +46,16 @@ import org.sakaiproject.tool.gradebook.Assignment;
 import org.sakaiproject.tool.gradebook.AssignmentGradeRecord;
 import org.sakaiproject.tool.gradebook.Category;
 import org.sakaiproject.tool.gradebook.Comment;
+import org.sakaiproject.tool.gradebook.iRubric.GradableObjectRubric;
+import org.sakaiproject.tool.gradebook.Gradebook;
 import org.sakaiproject.tool.gradebook.GradingEvent;
 import org.sakaiproject.tool.gradebook.GradingEvents;
 import org.sakaiproject.tool.gradebook.jsf.FacesUtil;
 
 public class AssignmentDetailsBean extends EnrollmentTableBean {
 	private static final Log logger = LogFactory.getLog(AssignmentDetailsBean.class);
+	
+	public static final String IRUBRIC_SITE_KEY = "iRubricSite";
 
 	/**
 	 * The following variable keeps bean initialization from overwriting
@@ -64,17 +68,21 @@ public class AssignmentDetailsBean extends EnrollmentTableBean {
 	private List updatedComments;
 
 	private Long assignmentId;
+	private Gradebook currentGradeBook;
     private Assignment assignment;
 	private Assignment previousAssignment;
 	private Assignment nextAssignment;
 	
 	private String assignmentCategory;
 	private String assignmentWeight;
+	private GradableObjectRubric gradableObjectRubric;
 
 	private boolean isAllCommentsEditable;
 	private boolean isAllStudentsViewOnly = true;  // with grader perms, user may be able to grade/comment a selection
 													// of the students and view the rest. If all view only, disable
 													// the buttons
+	
+	private String studentIds = "";
 
     public class ScoreRow implements Serializable {
         private AssignmentGradeRecord gradeRecord;
@@ -229,6 +237,7 @@ public class AssignmentDetailsBean extends EnrollmentTableBean {
         // Clear view state.
         previousAssignment = null;
         nextAssignment = null;
+        gradableObjectRubric = null;
 		scoreRows = new ArrayList();
 		updatedComments = new ArrayList();
 		updatedGradeRecords = new ArrayList();
@@ -399,6 +408,7 @@ public class AssignmentDetailsBean extends EnrollmentTableBean {
 
 				for (Iterator iter = studentUids.iterator(); iter.hasNext(); ) {
 					String studentUid = (String)iter.next();
+					studentIds += studentUid + ",";
 					Map enrFunctionMap = (Map) enrollmentMap.get(studentUid);
 					List enrRecList = new ArrayList(enrFunctionMap.keySet());
 					EnrollmentRecord enrollment = (EnrollmentRecord)enrRecList.get(0); // there is only one rec in this map
@@ -422,6 +432,10 @@ public class AssignmentDetailsBean extends EnrollmentTableBean {
 					scoreRows.add(new ScoreRow(enrollment, gradeRecord, comment, allEvents.getEvents(studentUid), userCanGrade));
 					if (userCanGrade)
 						isAllStudentsViewOnly = false;
+				}
+				
+				if (!studentIds.equals("")) {
+					studentIds = studentIds.substring(0, studentIds.length() - 1);
 				}
 				
 				if (getCategoriesEnabled()) {
@@ -479,7 +493,15 @@ public class AssignmentDetailsBean extends EnrollmentTableBean {
             }            
         }
 	}
-
+	
+	/**
+	 * Get String StudentIds	
+	 * @return String StudentIds, each Student's ID will separated by commas. e.g: StudentId1,StudentId2,...
+	 */
+	public String getStudentIds() {
+		return this.studentIds;
+	}
+	
 	// Delegated sort methods for read-only assignment & category sort order
     public String getAssignmentSortColumn() {
         return getPreferencesBean().getAssignmentSortColumn();
@@ -725,4 +747,34 @@ public class AssignmentDetailsBean extends EnrollmentTableBean {
 		
 		return "instructorView";
 	}
+	
+	/**
+	* Get the current parent gradebook of this assignment
+	* 
+	* @return GradeBook
+	*/
+	public Gradebook getCurrentGradeBook(){
+		if (logger.isDebugEnabled()) {
+			logger.debug("getCureentGradeBook " + currentGradeBook);
+		}
+		return getGradebook();
+	}
+	
+	/**
+	* Get a GradableObjectRubric object by current assignment
+	* 
+	* @return GradableObjectRubric
+	*/
+	public GradableObjectRubric getGradableObjectRubric() {
+        if (logger.isDebugEnabled()) {
+			logger.debug("Assignment: " + assignmentId);
+		}
+		if (gradableObjectRubric == null && assignmentId != null) {
+			
+			gradableObjectRubric = getRubricManager().getGradableObjectRubric(assignmentId);
+			
+		}
+
+        return gradableObjectRubric;
+    }
 }
