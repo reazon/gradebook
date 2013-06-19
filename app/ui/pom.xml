@@ -67,6 +67,25 @@
       <groupId>org.sakaiproject</groupId>
       <artifactId>sakai-gradebook-app-business</artifactId>
     </dependency>
+
+	   <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>sakai-gradebook-irubric</artifactId>
+                <version>${project.version}</version>
+               
+            </dependency>	
+      <dependency>
+            <groupId>org.sakaiproject</groupId>
+            <artifactId>sakai-gradebook-irubric-impl</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        
+         <dependency>
+            <groupId>org.sakaiproject</groupId>
+            <artifactId>sakai-gradebook-irubric-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
     <dependency>
       <groupId>org.sakaiproject.edu-services.gradebook</groupId>
       <artifactId>gradebook-service-api</artifactId>
@@ -283,6 +302,18 @@
     <dependency>
       <groupId>org.sakaiproject.jsf</groupId>
       <artifactId>jsf-spreadsheet</artifactId>
+    </dependency>
+    <!-- dependencies for iRubric patch artifact -->
+	<dependency>
+		<groupId>org.sakaiproject.portal</groupId>
+		<artifactId>sakai-portal-util</artifactId>
+		<version>${sakai.version}</version>
+	</dependency>
+
+	<dependency>
+      <groupId>org.sakaiproject.edu-services.course-management</groupId>
+      <artifactId>coursemanagement-api</artifactId>
+      <version>1.1.1</version>
     </dependency>
   </dependencies>
 

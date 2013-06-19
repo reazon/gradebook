@@ -39,6 +39,7 @@ public class AssignmentGradeRow implements Serializable {
     private List eventRows;
     private String eventsLogTitle;
     private boolean userCanGrade;
+    private boolean rubric = false;
 
     public AssignmentGradeRow(Assignment assignment, Gradebook gradebook) {
     	this.assignment = assignment;
@@ -51,6 +52,15 @@ public class AssignmentGradeRow implements Serializable {
     	commentText = "";
     	this.userCanGrade = userCanGrade;
     }
+    
+    public boolean isRubric() {
+		return rubric;
+	}
+	
+	public void setRubric(boolean rubric) {
+		this.rubric = rubric;
+	}
+    	
     public void setGradeRecord(AssignmentGradeRecord gradeRecord) {
     	this.gradeRecord = gradeRecord;
     }

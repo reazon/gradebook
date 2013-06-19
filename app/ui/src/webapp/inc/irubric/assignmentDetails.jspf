@@ -1,0 +1,30 @@
+<%-- Copyright (C) Reazon Systems, Inc.  All rights reserved. --%>
+
+<h:column rendered="#{(irubricBean.irubricSwitch != 0 && (irubricBean.irubricSwitch == 1 || assignmentDetailsBean.isiRubricSite))
+            && assignmentDetailsBean.gradableObjectRubric != null 
+            && assignmentDetailsBean.gradableObjectRubric.iRubricId != null}">
+  <f:facet name="header">
+    <h:outputText escape = "false" rendered="#{! empty assignmentDetailsBean.studentIds && !assignmentDetailsBean.assignment.externallyMaintained}" 
+value="<a href='#' onclick='gradeAll(#{assignmentDetailsBean.assignmentId}); renderToolTipGradeAll(this.id, event); return false;'><img src='images/rubric.gif' alt='Grade with iRubric' title='Grade with iRubric'/></a> | <a href='#' onclick='createRubricFrame(\"allgrades\", buildGetGradesByGdbId(#{assignmentDetailsBean.assignmentId})); clearBlinkAll(); return false;'><img src='images/refresh.gif' alt='Refresh all grades' title='Refresh all grades'/></a>" 
+styleClass="tier0" 
+    />
+    
+  </f:facet>
+  <h:outputLink id = "grade" value="#" onclick='showPopup(encodeUrl("iRubricLink.jsp?p=g&rosterStudentId=#{scoreRow.enrollment.user.userUid}&gradebookItemId=#{assignmentDetailsBean.assignmentId}")); renderLinkUpdate(this.id, event); return false;' 
+          rendered="#{!assignmentDetailsBean.assignment.externallyMaintained && scoreRow.userCanGrade}">
+  <h:graphicImage value="images/rubric.gif" alt="Grade with iRubric" title="Grade with iRubric"/>
+  </h:outputLink>
+  
+  <%-- only view iRubric if type is assignment --%>
+  <h:outputLink id = "viewgrade" value="#" onclick='showPopup(encodeUrl("iRubricLink.jsp?p=v&rosterStudentId=#{scoreRow.enrollment.user.userUid}&gradebookItemId=#{assignmentDetailsBean.assignmentId}")); renderLinkUpdate(this.id, event); return false;' 
+          rendered="#{assignmentDetailsBean.assignment.externallyMaintained}">
+  <h:graphicImage value="images/rubric.gif" alt="View with iRubric" title="View with iRubric"/>
+  </h:outputLink>
+  
+  <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+  
+  <h:outputLink id = "getgrade" value="#" onclick='createHiddenIframe("gg","#{scoreRow.enrollment.user.userUid}","#{assignmentDetailsBean.assignmentId}",this.id); removeLinkUpdate(this.id); return false;' 
+          rendered="#{!assignmentDetailsBean.assignment.externallyMaintained && scoreRow.userCanGrade}">
+    <h:graphicImage style="margin-top:8px;" value="images/refresh.gif" width="16" height="16" alt="Refresh grade from iRubric" title="Refresh grade from iRubric" />
+  </h:outputLink>
+</h:column>

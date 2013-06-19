@@ -1,0 +1,19 @@
+<%-- Copyright (C) Reazon Systems, Inc.  All rights reserved. --%>
+
+<h:column rendered="#{instructorViewBean.haveOneAttached
+						&& (irubricBean.irubricSwitch != 0 && (irubricBean.irubricSwitch == 1 || instructorViewBean.isiRubricSite))}">
+	<f:facet name="header">
+		<h:outputText escape = "false" value="Grade with iRubric | <a href='#' onclick='javascript:createRubricFrame(\"allgrades\", buildGetGradesByRos(\"#{instructorViewBean.studentUid}\")); return false;'><img src='images/refresh.gif' alt='Refresh all grades' title='Refresh all grades'/></a>" styleClass="tier0" />
+	</f:facet>
+	<h:outputLink id = "grade" value="#" onclick='showPopup(encodeUrl("iRubricLink.jsp?p=g&rosterStudentId=#{instructorViewBean.studentUid}&gradebookItemId=#{row.associatedAssignment.id}")); renderLinkUpdate(this.id, event); return false;' 
+		rendered="#{row.assignment && row.rubric 
+								   && !row.associatedAssignment.externallyMaintained}">
+		<h:graphicImage value="images/rubric.gif" alt="Grade with iRubric" title="Grade with iRubric"/>
+	</h:outputLink>
+	<f:verbatim>&nbsp;&nbsp;</f:verbatim>
+	<h:outputLink id = "getgrade" value="#" onclick='createHiddenIframe("gg","#{instructorViewBean.currentStudent.user.userUid}","#{row.associatedAssignment.id}",this.id ); removeLinkUpdate(this.id); return false;' 
+		rendered="#{row.assignment && row.rubric 
+								   && !row.associatedAssignment.externallyMaintained}">
+		<h:graphicImage value="images/refresh.gif" width="16" height="16" alt="Refresh grade from iRubric" title="Refresh grade from iRubric" />
+	</h:outputLink>
+</h:column>

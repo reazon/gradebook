@@ -1,6 +1,7 @@
 <link href="dhtmlpopup/dhtmlPopup.css" rel="stylesheet" type="text/css" />
 <script src="dhtmlpopup/dhtmlPopup.js" type="text/javascript"></script>
 <script src="js/dynamicSizeCheck.js" type="text/javascript"></script>
+<script src="js/irubric/helper.js" type="text/javascript"></script>
 
 
 <f:view>
@@ -203,7 +204,9 @@
 					<h:graphicImage value="images/log.png" alt="#{msgs.inst_view_log_alt}"/>
 				</h:outputLink>
 			</h:column>
-
+			
+			<%@include file="/inc/irubric/assignmentDetails.jspf"%>
+			
 			<h:column>
 				<f:facet name="header">
 		      <t:commandSortHeader columnName="studentScore" arrow="true" immediate="false" actionListener="#{assignmentDetailsBean.sort}">
@@ -217,6 +220,7 @@
 					<h:panelGroup rendered="#{!scoreRow.droppedFromGrade && !assignmentDetailsBean.assignment.externallyMaintained && scoreRow.userCanGrade}">
 						<h:inputText id="Score" value="#{scoreRow.score}" size="6" 
 							 rendered="#{assignmentDetailsBean.gradeEntryByPoints || assignmentDetailsBean.gradeEntryByPercent}"
+							 alt="#{scoreRow.enrollment.user.userUid}"
 							 style="text-align:right;" onkeypress="return submitOnEnter(event, 'gbForm:saveButton');">
 							<f:converter converterId="org.sakaiproject.gradebook.jsf.converter.NONTRAILING_DOUBLE" />
 							<f:validateDoubleRange minimum="0"/>
@@ -226,6 +230,7 @@
               style="margin-left: 5px;" />
 						<h:inputText id="LetterScore" value="#{scoreRow.letterScore}" size="6" 
 							 rendered="#{assignmentDetailsBean.gradeEntryByLetter}"
+							 alt="#{scoreRow.enrollment.user.userUid}"
 							 style="text-align:right;" onkeypress="return submitOnEnter(event, 'gbForm:saveButton');">
 							<f:converter converterId="org.sakaiproject.gradebook.jsf.converter.LETTER_GRADE_CONVERTER" />
 						</h:inputText>

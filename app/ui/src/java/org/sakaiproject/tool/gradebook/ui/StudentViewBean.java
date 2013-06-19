@@ -30,6 +30,8 @@ import org.apache.commons.logging.LogFactory;
 public class StudentViewBean extends ViewByStudentBean implements Serializable {
 	private static Log logger = LogFactory.getLog(StudentViewBean.class);
 	
+	public static final String IRUBRIC_SITE_KEY = "iRubricSite";
+	
 	private String studentUidToView;
 	private String instViewReturnToPage;
 	private String instViewAssignmentId;

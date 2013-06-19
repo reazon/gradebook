@@ -17,6 +17,11 @@
 		</t:aliasBean>
 
 		</div>
+		
+		<t:aliasBean alias="#{bean}" value="#{editAssignmentBean}">
+			<%-- add link to attach a rubric  --%>
+			<%@include file="/inc/irubric/editAssignment.jspf"%>
+		</t:aliasBean>
 
 		<p class="act calendarPadding">
 			<h:commandButton

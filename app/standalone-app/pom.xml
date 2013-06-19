@@ -61,6 +61,13 @@
       <artifactId>gradebook-service-api</artifactId>
     </dependency>
 
+	<dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>sakai-gradebook-irubric</artifactId>
+                <version>${project.version}</version>
+                
+            </dependency>	
+
     <dependency>
       <groupId>org.sakaiproject.edu-services.gradebook</groupId>
       <artifactId>gradebook-service-hibernate</artifactId>
