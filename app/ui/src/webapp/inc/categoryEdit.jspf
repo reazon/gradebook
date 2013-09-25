@@ -1,5 +1,8 @@
 <script type="text/javascript" src="/library/js/jquery.js"></script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 669b4edfce89d2828dbcdf9cf2457f85e012d842
 <fieldset>
 <legend><h4><h:outputText value="#{msgs.cat_heading}" styleClass="gbSection" /></h4></legend>
 <div class="indnt1 gbSection">
