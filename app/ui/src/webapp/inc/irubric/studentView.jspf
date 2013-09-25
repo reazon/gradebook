@@ -1,0 +1,11 @@
+<%-- Copyright © Reazon Systems, Inc.  All rights reserved. --%>
+<h:column rendered="#{studentViewBean.haveOneAttached
+						&& (irubricBean.irubricSwitch != 0 && (irubricBean.irubricSwitch == 1 || studentViewBean.isiRubricSite))}">
+	<f:facet name="header">
+		<h:outputText value="View iRubric" />
+	</f:facet>
+	<h:outputLink value="#" onclick="showPopup(encodeUrl(\"iRubricLink.jsp?p=v&gradebookItemId=#{row.associatedAssignment.id}&rosterStudentId=#{studentViewBean.studentUid}\")); return false;" 
+							rendered="#{row.assignment && row.rubric }">
+		<h:graphicImage value="images/rubric.gif" alt="View iRubric" title="View iRubric"/>
+	</h:outputLink>
+</h:column>

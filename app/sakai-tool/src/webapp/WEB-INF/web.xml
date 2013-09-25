@@ -30,6 +30,7 @@
 	      /WEB-INF/applicationContext.xml,
 	      			/WEB-INF/spring-db.xml,
 			/WEB-INF/spring-beans.xml,
+			/WEB-INF/irubric-bean.xml,
 			/WEB-INF/spring-facades.xml,
 			/WEB-INF/spring-hib.xml
 		</param-value>
@@ -132,7 +133,18 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.jsf</url-pattern>
 	</servlet-mapping>
-
+	
+	<!-- iRubric Servlet -->
+	<servlet>
+		<servlet-name>IRubricServlet</servlet-name>
+		<servlet-class>com.reazon.tool.irubricpatch.ui.IRubricServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>IRubricServlet</servlet-name>
+		<url-pattern>/IRubricServlet</url-pattern>
+	</servlet-mapping>
+	<!-- End iRubric Servlet -->
+	
 	<!--  Sakai filter -->
     <filter>
         <filter-name>sakai.request</filter-name>
@@ -152,6 +164,13 @@
         <filter-mapping>
         <filter-name>sakai.request</filter-name>
         <servlet-name>sakai.gradebook.addItem.helper</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>sakai.request</filter-name>
+        <servlet-name>IRubricServlet</servlet-name>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>

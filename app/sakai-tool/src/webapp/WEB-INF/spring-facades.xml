@@ -42,5 +42,11 @@
 	<bean id="org_sakaiproject_tool_gradebook_facades_ContextManagement"
 		class="org.sakaiproject.tool.gradebook.facades.sakai2impl.ContextManagementSakai2Impl">
 	</bean>
+	
+	<bean id="irubricBean"
+			class="com.reazon.tool.irubricpatch.ui.IrubricBean">		
+			<property name="serverConfigurationService"
+				ref="org.sakaiproject.component.api.ServerConfigurationService" />	
+	</bean>
 
 </beans>

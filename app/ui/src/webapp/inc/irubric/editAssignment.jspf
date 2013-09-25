@@ -1,0 +1,22 @@
+<%-- Copyright (C) Reazon Systems, Inc.  All rights reserved. --%>
+<script src="js/irubric/helper.js" type="text/javascript"></script>	
+<div class ="gbSection">
+	<h:outputLink value="#" 
+				  onclick='showPopup(encodeUrl("iRubricLink.jsp?p=a&gradebookItemId=#{bean.assignment.id}")); return false;'
+				  rendered="#{(irubricBean.irubricSwitch != 0 && (irubricBean.irubricSwitch == 1 || assignmentDetailsBean.isiRubricSite))}"> 
+		<h:graphicImage value="images/rubric.gif" alt="Select Rubric" title="Select Rubric"/>					
+	</h:outputLink>
+	
+	<h:outputLink value="#" 
+				  onclick='showPopup(encodeUrl("iRubricLink.jsp?p=a&gradebookItemId=#{bean.assignment.id}")); return false;'
+				  rendered="#{(irubricBean.irubricSwitch != 0 && (irubricBean.irubricSwitch == 1 || assignmentDetailsBean.isiRubricSite))}"> 
+		<h:outputText value="Select iRubric" />
+		
+	</h:outputLink>
+	
+	<h:outputText value="(current selection: #{bean.gradableObjectRubric.iRubricTitle})" rendered="#{
+				  				(irubricBean.irubricSwitch != 0 && (irubricBean.irubricSwitch == 1 || assignmentDetailsBean.isiRubricSite))
+								&& bean.gradableObjectRubric != null
+				  				&& bean.gradableObjectRubric.iRubricId != null}"/>
+	
+</div>

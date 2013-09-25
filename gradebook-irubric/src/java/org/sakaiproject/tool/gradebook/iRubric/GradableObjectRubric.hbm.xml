@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Copyright © Reazon Systems, Inc.  All rights reserved.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-cascade="none" package="org.sakaiproject.tool.gradebook.iRubric"
+	default-lazy="false">
+	<class name="org.sakaiproject.tool.gradebook.iRubric.GradableObjectRubric" table="GB_GRADABLE_OBJECT_IRUBRIC_T">
+
+		<id name="id" column="ID" type="long">
+			<generator class="native">
+				<param name="sequence">GB_GRADABLE_OBJECT_IRUBRIC_S</param>
+			</generator>
+		</id>
+
+		<property name="gradableObjectId" column="GRADABLE_OBJECT_ID" type="long"  not-null="true"/>
+		<property name="iRubricId" column="IRUBRIC_ID" type="string" not-null="false"/>
+		<property name="iRubricTitle" column="IRUBRIC_TITLE" type="string" not-null="false"/>
+    </class>
+</hibernate-mapping>
+

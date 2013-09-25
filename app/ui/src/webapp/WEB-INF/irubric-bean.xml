@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+<!-- iRubric bean configuration -->
+	<bean id="com.reazon.tool.irubricpatch.ui.IrubricBean" class="com.reazon.tool.irubricpatch.ui.IrubricBean"
+		init-method="init">
+		<property name="userDirectoryService"
+			ref="org.sakaiproject.user.api.UserDirectoryService" />
+		
+		<property name="siteService" 
+			ref="org.sakaiproject.site.api.SiteService" />
+		
+		<property name="courseManagementService" 
+			ref="org.sakaiproject.coursemanagement.api.CourseManagementService" />
+		
+		<property name="toolManager" 
+			ref="org.sakaiproject.tool.api.ToolManager" />
+	
+		<property name="gradebookManager"
+			ref="org_sakaiproject_tool_gradebook_business_GradebookManager" />
+		
+		<property name="serverConfigurationService"
+			ref="org.sakaiproject.component.api.ServerConfigurationService" />
+
+		<property name="rubricManager"
+			ref="com_reazon_tool_irubric_IRubricManager" />	
+	</bean>
+</beans>
+
