@@ -57,13 +57,6 @@ public class CourseGradesToSpreadsheetCustomConverter implements CourseGradesToS
 	@SuppressWarnings("deprecation")
 	public List<List<Object>> getSpreadsheetData(
 			List<EnrollmentRecord> enrollments, CourseGrade courseGrade,
-<<<<<<< HEAD
-			Map<String, CourseGradeRecord> gradesMap, List<String> fields) {
-		List<List<Object>> spreadsheetData = new ArrayList<List<Object>>();
-		
-		// Build column headers.
-		Boolean hasHeader = ServerConfigurationService.getBoolean("gradebook.institutional.export.headers",false);
-=======
 			Map<String, CourseGradeRecord> gradesMap) {
 		List<List<Object>> spreadsheetData = new ArrayList<List<Object>>();
 
@@ -74,7 +67,6 @@ public class CourseGradesToSpreadsheetCustomConverter implements CourseGradesToS
 		if (fields.length == 0) fields = defaultFields.split(",");
 
 		// Build column headers.
->>>>>>> 669b4edfce89d2828dbcdf9cf2457f85e012d842
 		if (hasHeader){
 			List<Object> headerRow = new ArrayList<Object>();
 			for (String headerField : fields){

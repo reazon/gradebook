@@ -346,16 +346,9 @@ public class GradebookCalculationImpl extends GradebookManagerHibernateImpl impl
         List<AssignmentGradeRecord> countedGradeRecs = new ArrayList<AssignmentGradeRecord>();
         for (AssignmentGradeRecord gradeRec : studentGradeRecs) {
             Assignment assign = gradeRec.getAssignment();
-<<<<<<< HEAD
-            boolean extraCredit = assign.isExtraCredit();
-            if(gradebook.getCategory_type() != GradebookService.CATEGORY_TYPE_NO_CATEGORY && assign.getCategory() != null && assign.getCategory().isExtraCredit())
-            	extraCredit = true;
-            
-=======
             boolean extraCredit = false;
             if (assign.isExtraCredit()!=null)
             	extraCredit = assign.isExtraCredit();
->>>>>>> 669b4edfce89d2828dbcdf9cf2457f85e012d842
             if (assign.isCounted() && !assign.getUngraded() && !assign.isRemoved() && countedSet.contains(assign) &&
                     assign.getPointsPossible() != null && assign.getPointsPossible() > 0 && !gradeRec.getDroppedFromGrade() && !extraCredit) {
                 countedGradeRecs.add(gradeRec);
