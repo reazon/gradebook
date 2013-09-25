@@ -1,10 +1,7 @@
 package org.sakaiproject.tool.gradebook.ui.helpers.entity;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import org.sakaiproject.entitybroker.EntityReference;
 import org.sakaiproject.entitybroker.entityprovider.CoreEntityProvider;
@@ -14,16 +11,7 @@ import org.sakaiproject.entitybroker.entityprovider.capabilities.Describeable;
 import org.sakaiproject.tool.gradebook.ui.helpers.producers.GradebookItemProducer;
 import org.sakaiproject.tool.gradebook.ui.helpers.producers.AuthorizationFailedProducer;
 import org.sakaiproject.tool.gradebook.ui.helpers.params.GradebookItemViewParams;
-
 import org.sakaiproject.service.gradebook.shared.GradebookService;
-import org.sakaiproject.site.api.Site;
-import org.sakaiproject.site.api.SiteService;
-import org.sakaiproject.tool.gradebook.ui.helpers.params.GradebookItemViewParams;
-import org.sakaiproject.tool.gradebook.ui.helpers.producers.AuthorizationFailedProducer;
-import org.sakaiproject.tool.gradebook.ui.helpers.producers.GradebookItemProducer;
-import org.sakaiproject.user.api.User;
-import org.sakaiproject.user.api.UserDirectoryService;
-import org.sakaiproject.user.api.UserNotDefinedException;
 
 import uk.ac.cam.caret.sakai.rsf.entitybroker.EntityViewParamsInferrer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;

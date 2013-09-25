@@ -283,7 +283,7 @@ public class GradebookCalculationImpl extends GradebookManagerHibernateImpl impl
 					for(int i=0; i<categories.size(); i++)
 					{
 						Category cate = (Category) categories.get(i);
-						if(cate != null && !cate.isRemoved() && asgn.getCategory() != null && cate.getId().equals(asgn.getCategory().getId()) && !asgn.isExtraCredit())
+						if(cate != null && !cate.isRemoved() && asgn.getCategory() != null && cate.getId().equals(asgn.getCategory().getId()))
 						{
 
 							if(cateTotalScoreMap.get(cate.getId()) == null)
@@ -369,14 +369,12 @@ public class GradebookCalculationImpl extends GradebookManagerHibernateImpl impl
 		            {
 		                assignmentsTaken.add(go.getId());
 		            }
-		            else if ((gradebook.getCategory_type() == GradebookService.CATEGORY_TYPE_ONLY_CATEGORY || gradebook
-		            		.getCategory_type() == GradebookService.CATEGORY_TYPE_WEIGHTED_CATEGORY)
-		            		&& go != null && categories != null)
+		            else if(gradebook.getCategory_type() == GradebookService.CATEGORY_TYPE_ONLY_CATEGORY && go != null)
 		            {
-//		                assignmentsTaken.add(go.getId());
-//		            }
-//		            else if(gradebook.getCategory_type() == GradebookService.CATEGORY_TYPE_WEIGHTED_CATEGORY && go != null && categories != null)
-//		            {
+		                assignmentsTaken.add(go.getId());
+		            }
+		            else if(gradebook.getCategory_type() == GradebookService.CATEGORY_TYPE_WEIGHTED_CATEGORY && go != null && categories != null)
+		            {
 		                for(int i=0; i<categories.size(); i++)
 		                {
 		                    Category cate = (Category) categories.get(i);

@@ -25,19 +25,11 @@
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
+      <artifactId>hibernate</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-orm</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
+      <artifactId>spring</artifactId>
     </dependency>
     <dependency>
       <groupId>org.sakaiproject.kernel</groupId>
@@ -97,8 +89,9 @@
 <!-- Please contact the gradebook development team before removing these -->
 <!-- Uncomment as necessary to run tests, or to generate new db schemas -->
     <dependency>
-      <groupId>org.hsqldb</groupId>
+      <groupId>hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
+      <version>1.7.3.0</version>
     </dependency>
 <!-- Since none of these JDBC libraries will be used except in standalone test -->
 <!-- builds, we specify the '_g' Oracle JAR to obtain more debugging information. -->
@@ -141,6 +134,16 @@
       <groupId>odmg</groupId>
       <artifactId>odmg</artifactId>
       <version>3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-pool</groupId>
+      <artifactId>commons-pool</artifactId>
+      <version>1.2</version>
     </dependency>
     <dependency>
       <groupId>commons-lang</groupId>
@@ -222,8 +225,10 @@
     </dependency>
 <!--javax.servletservlet-api${sakai.servletapi.version}-->
     <dependency>
-      <groupId>javax.servlet.jsp</groupId>
+      <groupId>javax.servlet</groupId>
       <artifactId>jsp-api</artifactId>
+      <version>2.0</version>
+<!--properties:  war.bundle: false -->
     </dependency>
 <!-- Sakai tag library -->
     <dependency>

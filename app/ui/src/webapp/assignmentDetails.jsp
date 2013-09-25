@@ -53,10 +53,7 @@
  			summary="#{msgs.assignment_details_table_summary}"
 			border="0">
 				<h:outputText id="titleLabel" value="#{msgs.assignment_details_title}"/>
-				<h:panelGroup>
-					<h:outputText id="title" value="#{assignmentDetailsBean.assignment.name}"/>
-					<h:outputText value=" (#{msgs.add_assignment_extra_credit})" rendered="#{assignmentDetailsBean.assignment.isExtraCredit}"/>
-				</h:panelGroup>
+				<h:outputText id="title" value="#{assignmentDetailsBean.assignment.name}"/>
 
 				<h:outputText id="pointsLabel" value="#{msgs.assignment_details_points}"/>
 				<h:outputText id="points" value="#{assignmentDetailsBean.assignment.pointsPossible}">

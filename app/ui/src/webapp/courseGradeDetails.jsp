@@ -127,7 +127,6 @@
 						onkeypress="return submitOnEnter(event, 'gbForm:saveButton');">
 						<f:converter converterId="org.sakaiproject.gradebook.jsf.converter.COURSE_GRADE" />
 					</h:inputText>
-                    <h:outputLabel for="Grade" value="#{msgs.course_grade_details_export_course_grades_options_gradeoverr}" />
 					<h:outputText rendered="#{!scoreRow.userCanGrade && scoreRow.enteredGrade != null}" value="#{scoreRow.enteredGrade}">
 						<f:converter converterId="org.sakaiproject.gradebook.jsf.converter.COURSE_GRADE" />
 					</h:outputText>
@@ -171,14 +170,12 @@
 				/>
 			<h:outputText rendered="#{!courseGradeDetailsBean.emptyEnrollments && courseGradeDetailsBean.enableCustomExport}" escape="false" value="<span class=\"highlightPanel\" style=\"padding:10px 5px 10px 10px\">"/>
 			    <h:outputText styleClass="instruction" style="padding-right:10px;" value="#{courseGradeDetailsBean.exportCustomLabel}" rendered="#{!courseGradeDetailsBean.emptyEnrollments && courseGradeDetailsBean.enableCustomExport}"/>
-
                 <h:commandButton
     				value="#{msgs.course_grade_details_export_course_grades_institution_control}"
     				actionListener="#{courseGradeDetailsBean.exportCustomCsv}"
     				rendered="#{!courseGradeDetailsBean.emptyEnrollments && courseGradeDetailsBean.enableCustomExport}"
     				/>
 			<h:outputText rendered="#{!courseGradeDetailsBean.emptyEnrollments && courseGradeDetailsBean.enableCustomExport}" escape="false" value="</span>" />
-
 			<br /><br /><hr class="itemSeparator"/><br />
 			<h:commandButton
 				id="saveButton"
@@ -203,6 +200,7 @@
 				style="margin-left: 5em;"
 			/>
 		</div>
+
 	  </h:form>
 	</div>
 </f:view>

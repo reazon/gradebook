@@ -9,7 +9,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *       http://www.opensource.org/licenses/ECL-2.0
+ *       http://www.osedu.org/licenses/ECL-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -86,9 +86,9 @@ public class FinalizeGradebookTest extends GradebookTestBase {
 		integrationSupport.addSectionMembership(TA_UID, section1.getUuid(), Role.TA);
 
 		// Add internal assignments
-		asnId1 = gradebookManager.createAssignment(gradebook.getId(), ASN_TITLE1, ASN_POINTS1, new Date(), Boolean.FALSE, Boolean.FALSE, Boolean.FALSE);
-		asnId2 = gradebookManager.createAssignment(gradebook.getId(), ASN_TITLE2, ASN_POINTS2, new Date(), Boolean.FALSE, Boolean.TRUE, Boolean.FALSE);
-		asnIdNotCounted = gradebookManager.createAssignment(gradebook.getId(), ASN_NOT_COUNTED, ASN_POINTS_NOT_COUNTED, new Date(), Boolean.TRUE, Boolean.TRUE, Boolean.FALSE);
+		asnId1 = gradebookManager.createAssignment(gradebook.getId(), ASN_TITLE1, ASN_POINTS1, new Date(), Boolean.FALSE, Boolean.FALSE);
+		asnId2 = gradebookManager.createAssignment(gradebook.getId(), ASN_TITLE2, ASN_POINTS2, new Date(), Boolean.FALSE, Boolean.TRUE);
+		asnIdNotCounted = gradebookManager.createAssignment(gradebook.getId(), ASN_NOT_COUNTED, ASN_POINTS_NOT_COUNTED, new Date(), Boolean.TRUE, Boolean.TRUE);
 		
 	}
 	

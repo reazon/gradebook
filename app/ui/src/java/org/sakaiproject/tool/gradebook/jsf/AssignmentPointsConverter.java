@@ -10,7 +10,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *       http://www.opensource.org/licenses/ECL-2.0
+ *       http://www.osedu.org/licenses/ECL-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -119,11 +119,6 @@ public class AssignmentPointsConverter extends PointsConverter {
             if(agr.getDroppedFromGrade()) {
                 formattedScore = "<strike>" + formattedScore + "</strike>";
             }
-        }
-        if(value != null && value instanceof CourseGradeRecord && !ServerConfigurationService.getBoolean("gradebook.roster.showCourseGradePoints", false)){
-        	if(((CourseGradeRecord) value).getEnteredGrade() != null){
-        		formattedScore = "<span style='color: red'>" + formattedScore + "</span>";
-			}
         }
 		return formattedScore;
 	}

@@ -28,23 +28,11 @@
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-ehcache</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.javassist</groupId>
-      <artifactId>javassist</artifactId>
+      <artifactId>hibernate</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-orm</artifactId>
+      <artifactId>spring</artifactId>
     </dependency>
     <dependency>
       <groupId>org.sakaiproject.kernel</groupId>
@@ -67,21 +55,6 @@
       <groupId>antlr</groupId>
       <artifactId>antlr</artifactId>
       <version>2.7.6rc1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.sakaiproject.edu-services.gradebook</groupId>
@@ -140,8 +113,9 @@
 <!-- Please contact the gradebook development team before removing these -->
 <!-- Uncomment as necessary to run tests, or to generate new db schemas -->
     <dependency>
-      <groupId>org.hsqldb</groupId>
+      <groupId>hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
+      <version>1.7.3.0</version>
     </dependency>
 <!-- Since none of these JDBC libraries will be used except in standalone test -->
 <!-- builds, we specify the '_g' Oracle JAR to obtain more debugging information. -->
@@ -189,7 +163,7 @@
     <dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
-      <version>1.4</version>
+      <version>1.2.2</version>
     </dependency>
     <dependency>
       <groupId>commons-pool</groupId>
@@ -234,7 +208,7 @@
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
+      <version>1.2.9</version>
     </dependency>
     <dependency>
       <groupId>dom4j</groupId>
@@ -281,8 +255,10 @@
     </dependency>
 <!--javax.servletservlet-api${sakai.servletapi.version}-->
     <dependency>
-      <groupId>javax.servlet.jsp</groupId>
+      <groupId>javax.servlet</groupId>
       <artifactId>jsp-api</artifactId>
+      <version>2.0</version>
+<!--properties:  war.bundle: false -->
     </dependency>
 <!-- Sakai tag library -->
     <dependency>
